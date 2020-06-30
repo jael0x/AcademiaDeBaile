@@ -12,6 +12,10 @@ use Jenssegers\Date\Date;
 
 class EventoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $title = 'Eventos';
@@ -32,18 +36,16 @@ class EventoController extends Controller
         // $data = request();
         // dd($data);
         $data = request()->validate([
-            'titulo' => 'required',
+            'titulo' => 'required|regex:/^[\pL\s]+$/u',
             'descripcion' => 'required',
             'tipo_id' => 'required',
             'fecha_eve' => 'required',
             'hora_eve' => 'required',
             'teatro_id' => 'required',
             'precio' => 'required',
-            'img_url' => '',
-            'docente_id' => '',
-            'periodo_id' => '',
         ],[
             'titulo.required' => 'Ingrese un título',
+            'titulo.regex' => 'Hay carácteres no permitidos',
             'descripcion.required' => 'Ingrese una descripción',
             'tipo_id.required' => 'Seleccione un tipo de evento',
             'fecha_eve.required' => 'La fecha del evento es necesaria',
@@ -52,12 +54,24 @@ class EventoController extends Controller
             'precio.required' => 'Ingrese un precio',
         ]);
 
+        $data = request();
+
+        $path = '';
+
+        if($data['img_url']){
+            $path = '/storage/'.$data->file('img_url')->storeAs(
+                'eventos',
+                str_replace(' ', '_', $data['titulo']).'_'.time().'.'.$data['img_url']->getClientOriginalExtension(),
+                'public'
+            );
+        }
+
         NotiEven::create([
             'titulo' => $data['titulo'],
             'fecha' => new Date(),
             'tipo_id' => $data['tipo_id'],
             'descripcion' => $data['descripcion'],
-            'img_url' => $data['img_url'],
+            'img_url' => $path,
             'teatro_id' => $data['teatro_id'],
             'fecha_eve' => $data['fecha_eve'],
             'hora_eve' => $data['hora_eve'],
@@ -85,18 +99,16 @@ class EventoController extends Controller
     public function update(NotiEven $notieven)
     {
         $data = request()->validate([
-            'titulo' => 'required',
+            'titulo' => 'required|regex:/^[\pL\s]+$/u',
             'descripcion' => 'required',
             'tipo_id' => 'required',
             'fecha_eve' => 'required',
             'hora_eve' => 'required',
             'teatro_id' => 'required',
             'precio' => 'required',
-            'img_url' => '',
-            'docente_id' => '',
-            'periodo_id' => '',
         ],[
             'titulo.required' => 'Ingrese un título',
+            'titulo.regex' => 'Hay carácteres no permitidos',
             'descripcion.required' => 'Ingrese una descripción',
             'tipo_id.required' => 'Seleccione un tipo de evento',
             'fecha_eve.required' => 'La fecha del evento es necesaria',
@@ -104,8 +116,31 @@ class EventoController extends Controller
             'teatro_id.required' => 'Seleccione un teatro',
             'precio.required' => 'Ingrese un precio',
         ]);
+
+        $data = request();
+
+        $path = '';
+
+        if($data['img_url']){
+            $path = '/storage/'.$data->file('img_url')->storeAs(
+                'eventos',
+                str_replace(' ', '_', $data['titulo']).'_'.time().'.'.$data['img_url']->getClientOriginalExtension(),
+                'public'
+            );
+        }
         
-        $notieven->update($data);
+        $notieven->update([
+            'titulo' => $data['titulo'],
+            'tipo_id' => $data['tipo_id'],
+            'descripcion' => $data['descripcion'],
+            'img_url' => $path,
+            'teatro_id' => $data['teatro_id'],
+            'fecha_eve' => $data['fecha_eve'],
+            'hora_eve' => $data['hora_eve'],
+            'precio' => $data['precio'],
+            'docente_id' => $data['docente_id'],
+            'periodo_id' => $data['periodo_id'],
+        ]);
 
         return redirect()->route('eventos.index');
     }

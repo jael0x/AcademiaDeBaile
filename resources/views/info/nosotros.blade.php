@@ -1,5 +1,5 @@
 @extends('layout') 
-@section('title', "Bienvenido") 
+@section('title', "Acerca de Nosotros") 
 @section('content') {{--
 <h3>Docentes</h3> --}} {{-- Curriculum --}} {{--
 <h3>Instalaciones</h3> --}} {{-- Descripción de las instalaciones donde se impartirán los cursos --}}

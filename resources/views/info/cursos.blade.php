@@ -2,7 +2,7 @@
 @section('title', $title) 
 @section('content')
 <div class="container">
-<h2 class="">{{$title}}</h2>
+<h3 class="">{{$title}}</h3>
 
 <div class="row">
     @foreach ($cursos as $curso)
@@ -45,7 +45,7 @@
                         @endforeach
                     </ul>
                     @endforeach
-                    <a class="btn-floating btn-large amber darken-4 right center-align price z-depth-2" style="pointer-events: none;"><strong style="font-size: 20px">${{$curso->precio_mensual}}</strong></a>
+                    <a class="btn-floating btn-large amber darken-4 right center-align price z-depth-2" style="pointer-events: none;"><strong>${{$curso->precio_mensual}}</strong></a>
                 </div>
                 <div class="card-action grey-text text-darken-3 row {{$curso->color->color2}}">
                 @if ($curso->edad_max < 70)

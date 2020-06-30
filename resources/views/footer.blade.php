@@ -15,6 +15,7 @@
         <h5 class="white-text">Social</h5>
         <ul>
           <li><a class="white-text" href="https://www.facebook.com/ninetteacademiaballet" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+          <li><a class="white-text" href="https://www.instagram.com/ninetteballet" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
         </ul>
       </div>
     </div>
@@ -22,8 +23,9 @@
   <div class="footer-copyright">
     <div class="container">
       &copy; 2018 Ninette Academia de Baile
-      {{-- <a class="white-text right" href="https://t.me/jaelarmasm" target="_blank">@jaelarmasm</a> --}}
-      <a class="white-text right" href="/admin">Administración</a>
+      <a class="white-text right" href="https://t.me/jaelarmasm" target="_blank">
+        <span style="font-size: 12px; color: rgba(255,255,255,0.8);">Desarrollado por: @jaelarmasm</span>
+      </a>
     </div>
   </div>
 </footer>

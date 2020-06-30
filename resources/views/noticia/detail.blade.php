@@ -1,12 +1,13 @@
 @extends('admin.layout') 
 @section('title', $title) 
 @section('content')
+{{-- {{dd($notieven->img_url)}} --}}
 
 <h5>{{ $title }}</h5>
 
 <div class="card">
     <div class="card-image">
-        <img src="{{$notieven->img_url}}">
+        <img src="{{asset($notieven->img_url)}}">
         @isset($notieven->precio)
             <div class="btn-floating halfway-fab btn-large orange darken-4 right center-align valign-wrapper" style="pointer-events: none; font-size: 20px;"><span>${{$notieven->precio}}</span></div>
         @endisset

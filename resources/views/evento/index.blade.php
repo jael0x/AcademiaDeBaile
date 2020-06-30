@@ -30,7 +30,7 @@
             <td class="hide-on-med-and-down">{{date('G:i', strtotime($notieven->hora_eve))}}</td>
             <td>{{ $notieven->teatro->nombre }}</td>
             <td class="hide-on-small-only">${{ $notieven->precio }}</td>
-            <td class="hide-on-med-and-down"><img src="{{$notieven->img_url}}" alt="" width="100px"></td>
+            <td class="hide-on-med-and-down"><img src="{{asset($notieven->img_url)}}" alt="" width="100px"></td>
             <td class="center edit-sec">
                 <a href="{{ route('eventos.edit', $notieven) }}" class="btn-floating btn-small waves-effect waves-light light-blue"><i class="fas fa-pencil-alt"></i></a>
             </td>

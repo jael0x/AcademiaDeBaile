@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 
 class CursoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $title = 'Cursos';

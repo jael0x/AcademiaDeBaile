@@ -18,8 +18,8 @@ class CreateNotiEvensTable extends Migration
             $table->string('titulo',64);
             $table->integer('tipo_id')->unsigned();
             $table->date('fecha');
-            $table->string('descripcion', 10240);
-            $table->string('img_url')->nullable();
+            $table->text('descripcion');
+            $table->text('img_url')->nullable();
             $table->integer('teatro_id')->unsigned()->nullable();
             $table->date('fecha_eve')->nullable();
             $table->time('hora_eve')->nullable();

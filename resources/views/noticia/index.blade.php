@@ -26,7 +26,7 @@
             <td class="hide-on-small-only">
                 <div class="description"><span class="justify">{{ $notieven->descripcion }}</span></div>
             </td>
-            <td><img src="{{$notieven->img_url}}" alt="" width="100px"></td>
+            <td><img src="{{asset($notieven->img_url)}}" alt="" width="100px"></td>
             <td class="center edit-sec">
                 <a href="{{ route('noticias.edit', $notieven) }}" class="btn-floating btn-small waves-effect waves-light light-blue"><i class="fas fa-pencil-alt"></i></a>
             </td>

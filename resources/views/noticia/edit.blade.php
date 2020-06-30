@@ -7,7 +7,7 @@
     <h6 class="helerp-text red-text">Por favor corrija los siguientes errores:</h6>
 @endif
 
-    <form method="POST" action="{{ url("/admin/noticias/edit/{$notieven->id}") }}">
+    <form method="POST" action="{{ url("/admin/noticias/edit/{$notieven->id}") }}" enctype="multipart/form-data">
         {{ method_field('PUT') }}        
         {{ csrf_field() }} {{-- proteccion --}}
         <div class="input-field">
@@ -22,14 +22,35 @@
             <span id="mdescripcion" class="helper-text red-text">{{ $errors->first('descripcion') }}</span>
         </div>
 
-        <div class="input-field">
-            <input type="text" name="img_url" id="img_url" value="{{ old('img_url', $notieven->img_url) }}">
-            <label for="img_url">Imagen</label>
+        <p>Imagen</p>
+        <div class="row">
+            <div class="col s12 m5">
+                <div class="insta-cont just-img">
+                    @if ($notieven->img_url)
+                        <img id="image" class="responsive-img" src="{{asset($notieven->img_url)}}" onclick="firemodal(this);">
+                    @else
+                        <img id="image" class="responsive-img" src="{{ asset("storage/default.jpg") }}" onclick="firemodal(this);">
+                    @endif
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="input-file-container">  
+                    <input class="input-file" type="file" id="img_url" name="img_url">
+                    <label tabindex="0" for="img_url" class="btn light-blue white-text waves-effect waves-light z-depth-2">SELECCIONAR</label>
+                </div>
+            </div>
         </div>
 
         <a class="waves-effect waves-light btn grey darken-1" href="{{ route('noticias.index') }}">Regresar</a>
         <button class="btn waves-effect waves-light" type="submit">Actualizar</button>
     </form>
+
+    {{-- Modal --}}
+    <div id="my-modal" class="my-modal">
+        <div class="container">
+            <img class="responsive-img z-depth-2s modal-img" id="imgModal" src="" alt="imagen">
+        </div>
+    </div>
 @endsection
 
 @section('js')
@@ -42,5 +63,25 @@
             $("#descripcion").addClass("invalid");
             $("#mdescripcion").show();
         @endif
+
+        document.getElementById("img_url").onchange = function () {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById("image").src = e.target.result;
+            };
+            reader.readAsDataURL(this.files[0]);
+        };
+
+        var modalImg = document.getElementById("my-modal");
+        var imgModal = document.getElementById("imgModal");
+
+        function firemodal(image){
+            imgModal.src = image.src;
+            modalImg.style.display = "block";
+        }
+
+        modalImg.onclick = function(){
+            modalImg.style.display = "none";
+        }
     </script>
 @endsection

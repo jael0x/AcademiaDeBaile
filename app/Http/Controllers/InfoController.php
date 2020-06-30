@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Curso;
 use App\NotiEven;
+use App\Image;
 use Illuminate\Http\Request;
+use Vinkla\Instagram\Instagram;
 
 class InfoController extends Controller
 {
     public function bienvenido()
     {
-        return view('info.bienvenido');
+        $imgprincipal = Image::find(1);
+        $imgcursos = Image::find(2);
+        $imgnotieven = Image::find(3);
+        return view('info.bienvenido', compact('imgprincipal', 'imgcursos', 'imgnotieven'));
     }
 
     public function nosotros()
@@ -20,8 +25,12 @@ class InfoController extends Controller
 
     public function multimedia()
     {
+        $token = Image::find(4);
+        // dd($token->url);
+        $instagram = new Instagram($token->url);
+        $media = $instagram->get();
         $title = 'Multimedia';
-        return view('info.multimedia', compact('title'));
+        return view('info.multimedia', compact('title', 'media'));
     }
     
     public function cursos()

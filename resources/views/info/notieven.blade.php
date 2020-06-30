@@ -16,7 +16,7 @@
                             </blockquote>
                                 <small class="grey-text text-darken-1">{{$notieven->fecha}}</small>
                                 <div class="card-image">
-                                    <img src="{{$notieven->img_url}}">
+                                    <img src="{{asset($notieven->img_url)}}">
                                 </div>
                             </div>
                             <div class="card-action">

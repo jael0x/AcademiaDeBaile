@@ -8,7 +8,7 @@
         <div class="col s12">
             <div class="card">
                 <div class="card-image">
-                    <img src="{{$notieven->img_url}}">
+                    <img src="{{ asset($notieven->img_url) }}">
                     @isset($notieven->precio)
                         <div class="btn-floating halfway-fab btn-large amber darken-4 right center-align z-depth-2" style="pointer-events: none; font-size: 20px;"><strong>${{$notieven->precio}}</strong></div>
                     @endisset

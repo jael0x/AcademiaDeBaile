@@ -22,7 +22,8 @@ Route::get('/noticiasyeventos/{notieven}', 'InfoController@notievenshow')->name(
 
 Route::get('/multimedia', 'InfoController@multimedia');
 
-Route::get('/admin', 'AdminController@index');
+Route::get('/admin', 'AdminController@index')->name('admin');
+Route::put('/admin/images/edit','AdminController@update')->name('images.update');
 
 Route::get('/admin/cursos', 'CursoController@index')->name('cursos.index');
 Route::get('/admin/cursos/create', 'CursoController@create')->name('cursos.create');
@@ -79,3 +80,27 @@ Route::get('/admin/periodos/{periodo}','PeriodoController@detail')->name('period
 Route::get('/admin/periodos/edit/{periodo}','PeriodoController@edit')->name('periodos.edit');
 Route::put('/admin/periodos/edit/{periodo}','PeriodoController@update')->name('periodos.update');
 Route::delete('/admin/periodos/delete/{periodo}','PeriodoController@delete')->name('periodos.delete');
+
+Route::get('/admin/users', 'UserController@index')->name('users.index');
+// Route::get('/admin/users/create', 'UserController@create')->name('users.create');
+// Route::post('/admin/users/create','UserController@store')->name('users.store');
+Route::get('/admin/users/{user}','UserController@detail')->name('users.detail');
+// Route::get('/admin/users/edit/{user}','UserController@edit')->name('users.edit');
+// Route::put('/admin/users/edit/{user}','UserController@update')->name('users.update');
+Route::delete('/admin/users/delete/{user}','UserController@delete')->name('users.delete');
+
+// Registration Routes...
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
+
+// Authentication Routes..
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+// Password Reset Routes...
+// Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+// Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+// Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+// Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+

@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             'tipos',
             'teatros',
             'noti_evens',
+            'images',
         ]);
         $this->call(UserSeeder::class);
         $this->call(PeriodoSeeder::class);
@@ -35,6 +36,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TipoSeeder::class);
         $this->call(TeatroSeeder::class);
         $this->call(NotiEvenSeeder::class);
+        $this->call(ImageSeeder::class);
     }
 
     protected function truncateTable(array $tables){

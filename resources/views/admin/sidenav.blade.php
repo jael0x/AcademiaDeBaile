@@ -13,6 +13,8 @@
     <li><a href="/admin/teatros" class="collapsible-header waves-effect amber-text text-darken-4">Teatros</a></li>
     <li><a href="/admin/periodos" class="collapsible-header waves-effect amber-text text-darken-4">Periodos</a></li>
     <li><a href="/admin/tipos" class="collapsible-header waves-effect amber-text text-darken-4">Tipos de Eventos</a></li>
+    <hr style=" border-top: 1px solid #e0e0e0;">
+    <li><a href="/admin/users" class="collapsible-header waves-effect amber-text text-darken-4">Administradores</a></li>
 </ul>
 
 <div class="navbar">
@@ -20,7 +22,12 @@
         <div class="nav-wrapper">
             <a id="fire-sidenav" class="sidenav-trigger amber-text text-darken-4">&#9776</a>
             <ul class="right">
-                <li><a class="btn waves-effect red lighten-1" href="/">Salir</a></li>
+                <li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn waves-effect red lighten-1" href="/logout" style="margin: 0 15px;">Salir</button>
+                    </form>
+                </li>
             </ul>
         </div>
     </nav>

@@ -8,7 +8,7 @@
   <meta name="author" content="">
   <link rel="icon" href="favicon.ico">
 
-  <title>@yield('title') - Sisnette</title>
+  <title>@yield('title') - Ninette Academia</title>
 
   <link type="text/css" rel="stylesheet" href="{{ asset('materialize/css/style.css') }}" />
   <link type="text/css" rel="stylesheet" href="{{ asset('materialize/css/materialize.min.css') }}" media="screen,projection" />

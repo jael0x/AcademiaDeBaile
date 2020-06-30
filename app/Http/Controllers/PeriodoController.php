@@ -8,6 +8,10 @@ use Jenssegers\Date\Date;
 
 class PeriodoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function meses(){
         $meses = [
             1 => 'Enero',
